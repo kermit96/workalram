@@ -1,0 +1,85 @@
+create table Users 
+(
+   seq  number(10),
+   userid nvarchar2(20),
+   username nvarchar2(20),
+   companyseq number(10),
+   nickname nvarchar2(20),
+   password  varchar2(20),
+   hpno     varchar2(30),  -- 연락처 
+   email    varchar2(100),
+   depart   nvarchar2(100), --  부서 
+   grade    nvarchar2(100),   
+   isdelete char(1)
+);
+
+
+create table admin
+(
+   seq number(10),
+   userid nvarchar2(20),
+   username nvarchar2(20), 
+   grade    number(5) , -- 등급 
+    isdelete char(1)
+);
+
+
+create table company 
+(
+   seq  number(10),
+   name  nvarchar2(100),
+   ssn  nvarchar2(20),   --   사업자등록번호  
+   region   nvarchar2(100),
+   telno    nvarchar2(20),  --  연락처 
+   ceo      nvarchar2(20)/   --  대표자 명 
+   homepage  nvarchar2(100)  -- 회사 homepage
+   startdate date  , --   유지 보수 시작일 
+   enddate   date   ,  --  유지 보수 만료일 
+   managerseq number(10) , -- 담당자 seq admin seq 
+   isdelete char(1) 
+)
+
+create table Company_Info
+(
+   Companyseq number(10),
+   infotype  number(5),
+   content  nclob
+)
+
+create table CompanyConfig 
+(
+  infotype  number(5),
+  title     nvarchar2(100)
+)
+
+create  table Receipt
+(
+  seq  number(10),
+  writer number(10), --users.seq 
+  reqdate date ,  -- 등록일 
+  updatedate date , -- 수정일 
+  title  nvarchar2(200), 제목 
+  Complete_req date, -- 완요 요청일
+  Complete  date,  -- 완료일 
+  state number(5) , -- 상태 
+  acceptor number(10), -- admin.seq ,  접수자 
+  manager  number(10), --  처리자 
+  testter  number(10),  --  테스터  
+  content  nclob   --  내용   
+  isdelete char(1)
+)
+
+create table ReceiptComent
+(
+  Receiptseq  number(10), 
+  reqdate   date,
+  Content  nclob,
+  updatedate date,
+  isdelete char(1)
+)
+
+create table config 
+(
+  title nvarchar(100),
+  content nvarchar(1000)
+)
